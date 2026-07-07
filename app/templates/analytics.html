@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% set nav = 'analytics' %}
+{% block title %}Analytics — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar"><div><h1>Analytics</h1>
+  <p class="sub">Pull reply stats from your sending tool to learn which angles win.</p></div></div>
+
+{% if pulled %}<div class="panel" style="border-color:var(--good);margin-bottom:14px"><span class="pill good">Synced</span> {{ pulled }} — leaderboard updated.</div>{% endif %}
+
+<div class="grid cards4" style="margin-bottom:8px">
+  <div class="stat"><b data-count>{{ funnel.researched }}</b><span>Researched</span></div>
+  <div class="stat"><b data-count>{{ funnel.approved }}</b><span>Approved</span></div>
+  <div class="stat"><b data-count>{{ funnel.sent }}</b><span>Sent</span></div>
+  <div class="stat"><b data-count>{{ funnel.reply_rate }}<span style="font-size:15px">%</span></b><span>Reply rate</span></div>
+</div>
+
+<h2>Hypothesis leaderboard</h2>
+<div class="panel">
+{% if board %}
+<table>
+<thead><tr><th>Angle (category)</th><th>Leads</th><th>Sent</th><th>Replied</th><th>Reply rate</th><th>Meetings</th></tr></thead>
+<tbody>
+{% for row in board %}
+<tr>
+  <td><b>{{ row.category.replace('_',' ')|capitalize }}</b></td>
+  <td class="mono">{{ row.leads }}</td>
+  <td class="mono">{{ row.sent }}</td>
+  <td class="mono">{{ row.replied }}</td>
+  <td>
+    <div class="row" style="gap:8px">
+      <div class="progress" style="width:110px"><i style="width:{{ [row.reply_rate, 100]|min }}%"></i></div>
+      <span class="mono">{{ row.reply_rate }}%</span>
+    </div>
+  </td>
+  <td class="mono">{{ row.meetings }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<p class="muted" style="font-size:13px;margin-top:12px">Categories with 5+ sends and strong reply rates are automatically boosted when ranking hypotheses for new leads — the loop tunes itself.</p>
+{% else %}
+<p class="muted">No reply data yet. Export a list, run the campaign in your sending tool, then import the results below.</p>
+{% endif %}
+</div>
+
+<h2>Import campaign results</h2>
+<div class="panel" style="max-width:640px">
+<form method="post" action="/lists/{{ (lists[0].id if lists else 0) }}/import-stats" enctype="multipart/form-data" id="statsform">
+  <label>List / campaign</label>
+  <select onchange="document.getElementById('statsform').action='/lists/'+this.value+'/import-stats'">
+    {% for l in lists %}<option value="{{ l.id }}">{{ l.name }}</option>{% endfor %}
+  </select>
+  <label>Results CSV (columns: email, sent, opened, replied, meeting — booleans or 0/1)</label>
+  <input name="file" type="file" accept=".csv" required>
+  <button class="btn" style="margin-top:16px">Import &amp; update leaderboard</button>
+</form>
+{% if not lists %}<p class="muted" style="margin-top:10px">Create and export a list first.</p>{% endif %}
+</div>
+
+{% if campaigns %}
+<h2>Campaigns</h2>
+<div class="panel">
+<table>
+<thead><tr><th>Campaign</th><th>Exported to</th><th>Created</th></tr></thead>
+<tbody>
+{% for c in campaigns %}
+<tr><td>{{ c.name }}</td><td class="muted">{{ c.exported_to or '—' }}</td><td class="muted mono" style="font-size:12px">{{ c.created_at }}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}

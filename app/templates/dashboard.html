@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% set nav = 'home' %}
+{% block title %}Overview — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar">
+  <div><h1>Good day, {{ user.name or user.email }}</h1><p class="sub">{{ ws.name }} · {{ ws.plan|capitalize }} plan</p></div>
+  <div class="row"><span class="credit">⚡ {{ credits }} credits</span><a class="btn" href="/lists">+ New list</a></div>
+</div>
+
+<div class="grid cards4">
+  <div class="stat"><b data-count>{{ stats.researched }}</b><span>Leads researched</span></div>
+  <div class="stat"><b data-count>{{ stats.avg_score }}<span style="font-size:15px"> /100</span></b><span>Avg personalization</span></div>
+  <div class="stat"><b data-count>{{ stats.time_saved }}<span style="font-size:15px"> hrs</span></b><span>Est. time saved</span></div>
+  <div class="stat"><b data-count>{{ stats.awaiting }}</b><span>Awaiting review</span></div>
+</div>
+
+<h2>Your lists</h2>
+<div class="panel">
+{% if lists %}
+<table>
+<thead><tr><th>Name</th><th>Leads</th><th>Status</th><th></th></tr></thead>
+<tbody>
+{% for l in lists %}
+<tr>
+  <td><a href="/lists/{{ l.id }}">{{ l.name }}</a></td>
+  <td class="mono">{{ l.row_count }}</td>
+  <td><span class="pill {{ l.status }}">{{ l.status }}</span></td>
+  <td style="text-align:right">
+    {% if l.status in ['ready'] %}<a class="btn sm" href="/review/{{ l.id }}">Review</a>
+    {% else %}<a class="btn sm ghost" href="/lists/{{ l.id }}">Open</a>{% endif %}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<div class="empty"><span class="glyph">§</span>No lists yet. <a href="/lists">Upload your first list</a> to see the research engine run.</div>
+{% endif %}
+</div>
+
+<h2>Recent activity</h2>
+<div class="panel">
+{% if activity %}
+{% for a in activity %}
+<div class="row" style="justify-content:space-between;border-bottom:1px solid var(--line);padding:7px 0">
+  <span>{{ a.action.replace('_',' ')|capitalize }} <span class="muted">{{ a.target }}</span></span>
+  <span class="muted mono" style="font-size:12px">{{ a.created_at }}</span>
+</div>
+{% endfor %}
+{% else %}<p class="muted">Activity will show up here as you research and export.</p>{% endif %}
+</div>
+{% endblock %}

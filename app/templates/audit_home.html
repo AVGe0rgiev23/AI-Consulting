@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% set nav = 'audit' %}
+{% block title %}Audit Reports — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar">
+  <div><h1>AI Opportunity Audits</h1>
+    <p class="sub">Research one company into a client-ready, white-label audit you can resell.</p></div>
+  <span class="credit">⚡ {{ credits }} credits</span>
+</div>
+
+<div class="panel" style="max-width:640px;margin-bottom:22px">
+<form method="post" action="/audit">
+  <label>Company name</label>
+  <input name="company_name" placeholder="Acme Logistics">
+  <label>Website / domain</label>
+  <input name="domain" required placeholder="acme-logistics.com">
+  <button class="btn" style="margin-top:16px">Generate audit (1 credit)</button>
+</form>
+<p class="muted" style="font-size:13px;margin-bottom:0">Runs the research engine on one company and writes an evidence-backed opportunity audit. Brand it under <a href="/settings">Settings</a>.</p>
+</div>
+
+<div class="panel">
+{% if reports %}
+<table>
+<thead><tr><th>Company</th><th>Domain</th><th>Created</th><th></th></tr></thead>
+<tbody>
+{% for r in reports %}
+<tr>
+  <td><b>{{ r.company_name }}</b></td>
+  <td class="muted">{{ r.domain }}</td>
+  <td class="muted mono" style="font-size:12px">{{ r.created_at }}</td>
+  <td style="text-align:right"><a class="btn sm ghost" href="/audit/{{ r.id }}" target="_blank">Open report →</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}<div class="empty"><span class="glyph">§</span>No audits yet. Generate your first one above.</div>{% endif %}
+</div>
+{% endblock %}

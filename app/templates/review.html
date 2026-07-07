@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% set nav = 'lists' %}
+{% block title %}Review — {{ list.name }}{% endblock %}
+{% block main %}
+<div class="topbar">
+  <div><h1>Review queue</h1><p class="sub">{{ list.name }} · lead {{ idx + 1 }} of {{ total }} · the AI drafts, you approve — nothing sends without your sign-off</p></div>
+  <div class="row">
+    {% if idx > 0 %}<a class="btn sm ghost" id="hk-prev" href="/review/{{ list.id }}?i={{ idx - 1 }}">← Prev</a>{% endif %}
+    <a class="btn sm ghost" id="hk-next" href="/review/{{ list.id }}?i={{ idx + 1 }}">Skip →</a>
+    <a class="btn sm ghost" href="/exports">Export</a>
+  </div>
+</div>
+
+<div class="review-grid">
+  <div class="panel">
+    <h2 style="margin-top:0">Research brief</h2>
+    <p><b>{{ lead.company_name or lead.domain }}</b>{% if lead.status=='approved' %} <span class="pill approved">approved</span>{% endif %}</p>
+    {% if brief %}
+      <p class="muted" style="font-size:13px">{{ brief.company_summary }}</p>
+      <p style="font-size:12px"><span class="pill {{ brief.quality|confidence_class }}">{{ brief.quality|confidence|title }} confidence</span> <span class="muted">· research quality {{ brief.quality }}/100 · <a href="/how-research-works">how research works</a></span></p>
+      {% if brief.thin %}
+      <div class="err">Insufficient data — {{ brief.thin_reason or 'not enough verifiable evidence' }}. Generic fallback written; review before sending.</div>
+      <form method="post" action="/leads/{{ lead.id }}/deep-research" style="margin:8px 0">
+        <input type="hidden" name="list_id" value="{{ list.id }}"><input type="hidden" name="i" value="{{ idx }}">
+        <button class="btn sm" type="submit" title="Re-crawls more pages with double the time budget plus fresh multi-source search, then regenerates (1 credit)">⛏ Dig deeper &amp; regenerate (1 credit)</button>
+      </form>
+      {% endif %}
+      {% if err == 'credits' %}<div class="err">Not enough credits for a deeper research pass.</div>{% endif %}
+      <h2 style="font-size:14px">Findings</h2>
+      {% for f in findings %}
+      <div class="finding"><div class="k">{{ f.kind }}{% if f.published_at %} · {{ f.published_at[:10] }}{% endif %}</div><b>{{ f.claim }}</b><br>
+        {% if f.snippet %}<span class="muted" style="font-size:12px">&ldquo;{{ f.snippet[:140] }}&rdquo;</span><br>{% endif %}
+        {% if f.source_url %}<a href="{{ f.source_url }}" target="_blank" rel="noopener">{{ f.source_url }}</a>{% endif %}</div>
+      {% endfor %}
+      <h2 style="font-size:14px">Hypotheses</h2>
+      {% for h in hypotheses %}
+      <div class="hyp"><div class="c">{{ h.category }} · conf {{ (h.confidence*100)|round|int }}%</div>{{ h.statement }}</div>
+      {% endfor %}
+    {% else %}<p class="muted">No brief yet.</p>{% endif %}
+  </div>
+
+  <div>
+    {% set emails = assets | selectattr('kind','in',['email_1','email_2','email_3','email_4','email_5']) | list %}
+    {% set first = (emails | selectattr('kind','equalto','email_1') | list) %}
+    {% set primary = first[0] if first else (emails[0] if emails else None) %}
+    {% if primary %}
+    <div class="panel">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <h2 style="margin:0">Email 1</h2>
+        <div class="gauge {{ primary.score|score_class }}" style="--score:{{ primary.score }}"><b>{{ primary.score }}</b></div>
+      </div>
+      <div class="email" style="margin-top:12px">
+        {% if primary.subject %}<div class="subj">Subject: {{ primary.subject }}</div>{% endif %}{{ primary.content }}
+      </div>
+      {% if err == 'floor' %}<div class="err">Approval blocked — score is below the quality floor ({{ approval_floor }}). Edit the email first.</div>{% endif %}
+      {% if primary.breakdown.insufficient_research %}<div class="err">Generic fallback — research was too thin to personalize honestly. Edit before approving.</div>{% endif %}
+      {% if primary.breakdown.slop_hits %}<div class="err">Slop caught &amp; flagged: {{ primary.breakdown.slop_hits | join(', ') }}</div>{% endif %}
+
+      {% if primary.hypothesis_id %}
+      {% set hyp_list = hypotheses | selectattr('id', 'equalto', primary.hypothesis_id) | list %}
+      {% if hyp_list %}
+      {% set used = hyp_list[0].evidence %}
+      {% set evidence_findings = findings | selectattr('id', 'in', used) | list %}
+      {% if evidence_findings %}
+      <div style="margin-top:10px">
+        <h2 style="font-size:14px;margin-bottom:4px">Evidence behind this email</h2>
+        {% for f in evidence_findings %}
+        <div class="finding"><b>{{ f.claim }}</b><br>
+          <a href="{{ f.source_url }}" target="_blank" rel="noopener">{{ f.source_url }}</a></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% endif %}
+      {% endif %}
+
+      <div class="seqtabs">
+        {% for e in emails %}<span class="pill {{ e.score|score_class }}">{{ e.kind.replace('email_','Step ') }} · {{ e.score }}</span>{% endfor %}
+      </div>
+
+      <form method="post" action="/assets/{{ primary.id }}/edit">
+        <input type="hidden" name="list_id" value="{{ list.id }}">
+        <input type="hidden" name="i" value="{{ idx }}">
+        <label>Subject</label>
+        <input name="subject" value="{{ primary.subject }}">
+        <label>Edit body</label>
+        <textarea name="content" id="hk-editor">{{ primary.content }}</textarea>
+        <div class="row" style="margin-top:12px">
+          <button class="btn ghost sm" type="submit">Save edit</button>
+        </div>
+      </form>
+
+      <div class="row" style="margin-top:14px">
+        <form method="post" action="/assets/{{ primary.id }}/approve" id="hk-approve">
+          <input type="hidden" name="list_id" value="{{ list.id }}"><input type="hidden" name="i" value="{{ idx }}">
+          <button class="btn" type="submit">✓ Approve &amp; next</button>
+        </form>
+        <form method="post" action="/leads/{{ lead.id }}/regenerate" id="hk-regen">
+          <input type="hidden" name="list_id" value="{{ list.id }}"><input type="hidden" name="i" value="{{ idx }}">
+          <button class="btn ghost" type="submit">↻ Regenerate</button>
+        </form>
+      </div>
+      <div class="hotkeys">
+        <span><b class="kbd">A</b> approve &amp; next</span>
+        <span><b class="kbd">R</b> regenerate</span>
+        <span><b class="kbd">E</b> edit body</span>
+        <span><b class="kbd">←</b><b class="kbd">→</b> navigate leads</span>
+      </div>
+    </div>
+
+    {% set li = assets | selectattr('kind','in',['li_connect','li_dm']) | list %}
+    {% if li %}
+    <div class="panel" style="margin-top:16px">
+      <h2 style="margin-top:0">LinkedIn</h2>
+      {% for a in li %}
+      <div class="email"><div class="subj">{{ 'Connection note' if a.kind=='li_connect' else 'DM' }} · {{ a.score }}/100</div>{{ a.content }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% else %}<div class="panel"><p class="muted">No outreach generated for this lead yet.</p></div>{% endif %}
+  </div>
+</div>
+{% endblock %}

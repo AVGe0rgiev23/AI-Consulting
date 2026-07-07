@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% set nav = 'prompts' %}
+{% block title %}Prompt Library — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar"><div><h1>Prompt Library</h1>
+  <p class="sub">Every prompt the AI uses, editable per workspace. Changes apply to all new research and generation runs.{% if not can_edit %} You have view access; ask a workspace admin to edit.{% endif %}</p></div></div>
+
+{% for group, slots in groups %}
+<h2 style="margin:26px 0 10px">{{ group }}</h2>
+{% for s in slots %}
+<div class="panel" style="max-width:860px;margin-bottom:14px">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+    <div>
+      <strong>{{ s.label }}</strong>
+      {% if s.customized %}<span class="pill good">Customized</span>
+      {% else %}<span class="pill pending">Default</span>{% endif %}
+      <p class="sub" style="margin:4px 0 0">{{ s.description }}</p>
+    </div>
+    {% if can_edit and s.customized %}
+    <form method="post" action="/prompts/{{ s.key }}/reset">
+      <button class="btn" type="submit">Reset to default</button>
+    </form>
+    {% endif %}
+  </div>
+  <form method="post" action="/prompts/{{ s.key }}" style="margin-top:10px">
+    <textarea name="content" class="mono" {% if not can_edit %}readonly{% endif %}>{{ s.content }}</textarea>
+    {% if can_edit %}
+    <button class="btn" style="margin-top:10px" type="submit">Save</button>
+    {% endif %}
+  </form>
+</div>
+{% endfor %}
+{% endfor %}
+{% endblock %}

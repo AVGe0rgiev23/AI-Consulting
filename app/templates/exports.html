@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% set nav = 'exports' %}
+{% block title %}Exports — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar"><div><h1>Exports</h1><p class="sub">Download approved sequences or push them straight to your sending tool.</p></div></div>
+
+{% if sender_stub %}<div class="panel" style="border-color:var(--warn);margin-bottom:14px"><span class="pill warn">Preview mode</span> Sending is disabled — downloads and pushes are previews; nothing is sent to anyone.</div>{% endif %}
+{% if pushed %}<div class="panel" style="border-color:var(--good);margin-bottom:14px"><span class="pill good">Pushed</span> {{ pushed }}</div>{% endif %}
+{% if error %}<div class="panel" style="border-color:var(--warn);margin-bottom:14px"><span class="pill warn">Push failed</span> {{ error }}</div>{% endif %}
+
+<div class="panel">
+{% if lists %}
+<table>
+<thead><tr><th>List</th><th>Status</th><th>Download</th><th>Push via API</th></tr></thead>
+<tbody>
+{% for l in lists %}
+<tr>
+  <td>{{ l.name }}</td>
+  <td><span class="pill {{ l.status }}">{{ l.status }}</span></td>
+  <td class="row">
+    {% for f in formats %}<a class="btn sm ghost" href="/lists/{{ l.id }}/export?format={{ f }}">{{ f }}</a>{% endfor %}
+  </td>
+  <td class="row">
+    {% for p in providers %}
+    {% if p in connected %}
+    <form method="post" action="/lists/{{ l.id }}/push/{{ p }}" style="display:inline">
+      <button class="btn sm" type="submit">Push to {{ p.title() }}</button>
+    </form>
+    {% else %}
+    <a class="btn sm ghost" href="/settings" title="Add your {{ p.title() }} API key in Settings">Connect {{ p.title() }}</a>
+    {% endif %}
+    {% endfor %}
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+<p class="muted" style="font-size:13px;margin-top:14px">Only leads with approved emails are included. Pushing creates the campaign, uploads the 5-step sequence as per-lead variables, and marks leads exported.</p>
+{% else %}<p class="muted">No lists to export.</p>{% endif %}
+<p class="muted" style="font-size:13px;margin-bottom:0">LeadGenius prepares content only — it does not send email or manage deliverability. Sender domain authentication (SPF, DKIM, DMARC) and warm-up are configured at your sending provider before any campaign goes out.</p>
+</div>
+
+{% if pushes %}
+<h2 style="margin:26px 0 10px">Recent pushes</h2>
+<div class="panel">
+<table>
+<thead><tr><th>List</th><th>Provider</th><th>Campaign</th><th>Leads</th><th>When</th><th></th></tr></thead>
+<tbody>
+{% for p in pushes %}
+<tr>
+  <td>{{ p.list_name }}</td>
+  <td><span class="pill good">{{ p.provider }}</span></td>
+  <td>{{ p.campaign_name }}</td>
+  <td>{{ p.lead_count }}</td>
+  <td class="muted">{{ p.created_at }}</td>
+  <td style="text-align:right">
+    <form method="post" action="/lists/{{ p.list_id }}/pull/{{ p.provider }}">
+      <button class="btn sm ghost" type="submit" title="Fetch sent/opened/replied from {{ p.provider.title() }} and update the leaderboard">↓ Pull stats</button>
+    </form>
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
+{% endblock %}

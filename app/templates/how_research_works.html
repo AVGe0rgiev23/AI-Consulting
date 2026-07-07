@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}How our research works — LeadGenius{% endblock %}
+{% block layout %}
+<main class="main" style="max-width:780px;margin:0 auto;padding:48px 24px">
+<p><a href="/">← LeadGenius</a></p>
+<h1>How our research works</h1>
+<p class="sub">Every claim in every email traces to a public source you can click. Here is exactly what we do — and what we refuse to do.</p>
+
+<h2>Where the information comes from</h2>
+<ul>
+  <li><b>The prospect's own website.</b> We read a handful of public pages — home, about, services, pricing, blog, careers — the same pages any visitor sees.</li>
+  <li><b>Public web search.</b> Recent news, hiring activity, and reviews from a commercial search API.</li>
+</ul>
+<p>That's the entire list. No purchased data brokers, no scraped social profiles, no private or login-gated content.</p>
+
+<h2>How the crawler behaves</h2>
+<ul>
+  <li>It honors <code>robots.txt</code>, including crawl-delay directives. If a site says no, we don't crawl it — and we tell you that's why research is thin.</li>
+  <li>It identifies itself as <code>LeadGeniusBot</code> with a contact URL, rate-limits itself per domain, and gives up after a short time budget instead of hammering slow sites.</li>
+  <li>Results are cached for 7 days so the same site isn't re-crawled needlessly.</li>
+</ul>
+
+<h2>Claim = evidence, enforced in code</h2>
+<ul>
+  <li><b>A human approves everything.</b> The AI drafts; you review, edit, and approve. Nothing is exported or sent without explicit human sign-off on each lead.</li>
+  <li>Search signals carry their publication dates, and stale signals are discounted — a hiring post from last year doesn't masquerade as a fresh buying signal.</li>
+  <li>Every research finding must cite the exact source URL it came from. A validation pass drops any finding whose claim can't be matched to the actual text of that source.</li>
+  <li>Each lead gets a research confidence score (high / medium / low) from pages found, verifiable findings, and search coverage. We show it to you — we don't pretend.</li>
+  <li>When research is too thin to personalize honestly, the app <b>refuses to fabricate</b>. You get a clearly-labeled generic draft flagged for manual review, with the reason (site blocked, domain dead, not enough content).</li>
+  <li>Emails scoring below the quality floor cannot be approved until a human edits them.</li>
+</ul>
+
+<h2>Data handling</h2>
+<ul>
+  <li>Uploaded lead lists are business contact data processed on your behalf; they stay in your workspace and are never sold or shared.</li>
+  <li>Crawl and search caches expire automatically. Deleting a list deletes its research.</li>
+  <li>Full details in our <a href="/privacy">privacy policy</a> and <a href="/terms">terms</a>.</li>
+</ul>
+</main>
+{% endblock %}

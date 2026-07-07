@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% set nav = 'onboarding' %}
+{% block title %}Offer Profile — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar"><div><h1>Your Offer Profile</h1>
+<p class="sub">This feeds every email. One good proof point beats ten adjectives.</p></div></div>
+<div class="panel" style="max-width:640px">
+<form method="post" action="/onboarding">
+  <label>What do you sell?</label>
+  <input name="what_we_sell" value="{{ profile.what_we_sell }}" required
+    placeholder="AI automation systems for lead follow-up">
+  <label>Who is it for, and what result?</label>
+  <input name="icp" value="{{ profile.icp }}" required
+    placeholder="Local service businesses that miss inbound calls">
+  <label>One proof point with a number (optional but powerful)</label>
+  <input name="proof_point" value="{{ profile.proof_point }}"
+    placeholder="One client went from 2% to 16% reply rate">
+  <label>Voice</label>
+  <select name="voice_preset">
+    <option value="consultative" {% if profile.voice_preset=='consultative' %}selected{% endif %}>Consultative</option>
+    <option value="casual" {% if profile.voice_preset=='casual' %}selected{% endif %}>Casual</option>
+    <option value="direct" {% if profile.voice_preset=='direct' %}selected{% endif %}>Direct</option>
+  </select>
+  <button class="btn" style="margin-top:18px">Save &amp; continue</button>
+</form>
+</div>
+{% endblock %}

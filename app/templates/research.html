@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% set nav = 'lists' %}
+{% block title %}Researching — {{ list.name }}{% endblock %}
+{% block main %}
+<div class="topbar">
+  <div><h1><span class="livedot"></span>Researching {{ list.name }}</h1>
+    <p class="sub" id="statusline">Starting the research engine…</p></div>
+  <a class="btn ghost sm" href="/lists/{{ list.id }}">Back to list</a>
+</div>
+
+<div class="panel">
+  <div class="row" style="justify-content:space-between;margin-bottom:10px">
+    <span class="mono" id="counter">0 / 0</span>
+    <span class="mono muted" id="pct">0%</span>
+  </div>
+  <div class="progress" style="width:100%"><i id="bar" style="width:0%"></i></div>
+
+  <div id="stream" class="stream" aria-live="polite"></div>
+
+  <div id="donebox" style="display:none;margin-top:18px">
+    <a class="btn" id="reviewlink" href="/review/{{ list.id }}">Open review queue →</a>
+  </div>
+  <div id="errbox" class="err" style="display:none;margin-top:14px">
+    Live updates dropped. <a href="/research/{{ list.id }}">Reconnect</a> or
+    <a href="/review/{{ list.id }}">open the review queue</a>.
+  </div>
+</div>
+
+<script>
+(function(){
+  var listId = {{ list.id }};
+  var stream = document.getElementById('stream');
+  var bar = document.getElementById('bar');
+  var counter = document.getElementById('counter');
+  var pct = document.getElementById('pct');
+  var statusline = document.getElementById('statusline');
+  var donebox = document.getElementById('donebox');
+  var errbox = document.getElementById('errbox');
+  var phaseLabels = {queued:'Queued', start:'Starting', researching:'Crawling',
+    found:'Findings', analyzed:'Hypotheses', written:'Outreach', complete:'Complete'};
+
+  function addLine(ev){
+    var row = document.createElement('div');
+    row.className = 'sline ' + ev.phase;
+    var tag = document.createElement('span');
+    tag.className = 'stag';
+    tag.textContent = phaseLabels[ev.phase] || ev.phase;
+    var msg = document.createElement('span');
+    msg.textContent = ev.message;
+    row.appendChild(tag); row.appendChild(msg);
+    stream.appendChild(row);
+    stream.scrollTop = stream.scrollHeight;
+  }
+
+  function setProgress(done, total){
+    if(!total) return;
+    var p = Math.round(done/total*100);
+    bar.style.width = p + '%';
+    counter.textContent = done + ' / ' + total;
+    pct.textContent = p + '%';
+  }
+
+  var es = new EventSource('/research/' + listId + '/stream');
+  es.onmessage = function(e){
+    var ev = JSON.parse(e.data);
+    addLine(ev);
+    setProgress(ev.done, ev.total);
+    statusline.textContent = (phaseLabels[ev.phase]||ev.phase) + ' — ' + ev.message;
+    if(ev.phase === 'complete'){
+      es.close();
+      setProgress(ev.total, ev.total);
+      statusline.textContent = ev.message;
+      donebox.style.display = 'block';
+    }
+  };
+  es.onerror = function(){
+    es.close();
+    errbox.style.display = 'block';
+  };
+})();
+</script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% set nav = 'lists' %}
+{% block title %}{{ list.name }} — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar">
+  <div><h1>{{ list.name }}</h1><p class="sub">{{ list.row_count }} leads · <span class="pill {{ list.status }}">{{ list.status }}</span></p></div>
+  <span class="credit">⚡ {{ credits }} credits</span>
+</div>
+
+<div class="panel" style="margin-bottom:20px">
+<form method="post" action="/lists/{{ list.id }}/research" class="row">
+  <div style="flex:1;min-width:200px">
+    <label style="margin-top:0">Offer profile</label>
+    <select name="offer_profile_id">
+      {% for p in profiles %}<option value="{{ p.id }}">{{ p.name }} — {{ p.what_we_sell[:40] }}</option>{% endfor %}
+    </select>
+  </div>
+  <button class="btn" style="align-self:flex-end">Research all &amp; write outreach</button>
+</form>
+<p class="muted" style="font-size:13px;margin-bottom:0">Costs 1 credit per pending lead. Research runs the full pipeline: crawl → findings → hypotheses → scored sequence.</p>
+</div>
+
+<div class="panel">
+<table>
+<thead><tr><th>Company</th><th>Domain</th><th>Contact</th><th>Research</th><th>Status</th></tr></thead>
+<tbody>
+{% for l in leads %}
+<tr>
+  <td>{{ l.company_name or '—' }}</td>
+  <td class="muted">{{ l.domain or '—' }}</td>
+  <td>{{ l.contact_name or '—' }}{% if l.contact_title %} <span class="muted">· {{ l.contact_title }}</span>{% endif %}</td>
+  <td>{% if l.id in briefs %}{% set b = briefs[l.id] %}<span class="pill {{ b.quality|confidence_class }}" title="research quality {{ b.quality }}/100">{{ b.quality|confidence }}</span>{% else %}<span class="muted">—</span>{% endif %}</td>
+  <td><span class="pill {{ l.status }}">{{ l.status.replace('_', ' ') }}</span>{% if l.status_reason %}<br><span class="muted" style="font-size:11px">{{ l.status_reason }}</span>{% endif %}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% if list.status == 'ready' %}<p style="margin-top:16px"><a class="btn" href="/review/{{ list.id }}">Open review queue →</a></p>{% endif %}
+{% endblock %}

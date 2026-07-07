@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Sign up — LeadGenius{% endblock %}
+{% block layout %}
+<div class="authshell">
+  <div class="art">
+    <div class="scanline"></div>
+    <div class="amark">L</div>
+    <h1>Turn a spreadsheet into research-backed outreach.</h1>
+    <p class="tag">Upload a list. The engine researches every company, finds the angle,
+      and writes a sequence that reads like you wrote it yourself.</p>
+    <div class="props">
+      <div><b></b> 25 free lead credits to start, no card required</div>
+      <div><b></b> Evidence-cited personalization on every message</div>
+      <div><b></b> A proven 5-step sequence, tuned to what actually replies</div>
+    </div>
+  </div>
+  <div class="formside">
+    <div class="formcard">
+      <h1>Start free</h1>
+      <p class="lede">25 free lead credits. No card.</p>
+      {% if error %}<div class="err">{{ error }}</div>{% endif %}
+      <form method="post" action="/signup">
+        <label>Name</label><input name="name" type="text">
+        <label>Email</label><input name="email" type="email" required>
+        <label>Password</label><input name="password" type="password" required minlength="8">
+        <button class="btn" style="margin-top:18px;width:100%;justify-content:center">Create account</button>
+      </form>
+      <p class="muted" style="margin-top:16px;font-size:13px">Have an account? <a href="/login">Log in</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

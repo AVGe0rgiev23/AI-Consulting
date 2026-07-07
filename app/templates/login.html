@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Log in — LeadGenius{% endblock %}
+{% block layout %}
+<div class="authshell">
+  <div class="art">
+    <div class="scanline"></div>
+    <div class="amark">L</div>
+    <h1>Outreach that did<br>the homework.</h1>
+    <p class="tag">Every message ships with the evidence behind it — the finding, the source,
+      the reasoning. Nothing generic gets through.</p>
+    <div class="props">
+      <div><b></b> One client took a cold list from 2% to 16% replies</div>
+      <div><b></b> Every line traces back to a cited, checkable fact</div>
+    </div>
+  </div>
+  <div class="formside">
+    <div class="formcard">
+      <h1>Welcome back</h1>
+      <p class="lede">Log in to your workspace.</p>
+      {% if error %}<div class="err">{{ error }}</div>{% endif %}
+      <form method="post" action="/login">
+        <label>Email</label><input name="email" type="email" required autofocus>
+        <label>Password</label><input name="password" type="password" required>
+        <button class="btn" style="margin-top:18px;width:100%;justify-content:center">Log in</button>
+      </form>
+      <p class="muted" style="margin-top:16px;font-size:13px">No account? <a href="/signup">Sign up free</a></p>
+    </div>
+  </div>
+</div>
+{% endblock %}

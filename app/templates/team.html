@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% set nav = 'team' %}
+{% block title %}Team — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar">
+  <div><h1>Team</h1><p class="sub">{{ ws.name }} · {{ seats_used }} of {{ seats }} seats used ({{ ws.plan }} plan)</p></div>
+</div>
+
+{% if workspaces|length > 1 %}
+<div class="panel" style="margin-bottom:20px;max-width:640px">
+  <form method="post" action="/workspace/switch" class="row">
+    <div style="flex:1;min-width:200px">
+      <label style="margin-top:0">Active workspace</label>
+      <select name="workspace_id">
+        {% for w in workspaces %}<option value="{{ w.id }}" {% if w.id==ws.id %}selected{% endif %}>{{ w.name }}</option>{% endfor %}
+      </select>
+    </div>
+    <button class="btn ghost" style="align-self:flex-end">Switch</button>
+  </form>
+</div>
+{% endif %}
+
+<div class="panel" style="margin-bottom:20px">
+<table>
+<thead><tr><th>Member</th><th>Email</th><th>Role</th>{% if is_admin %}<th></th>{% endif %}</tr></thead>
+<tbody>
+{% for m in members %}
+<tr>
+  <td><b>{{ m.name }}</b>{% if m.id == user.id %} <span class="muted">(you)</span>{% endif %}</td>
+  <td class="muted">{{ m.email }}</td>
+  <td>
+    {% if is_admin and m.role != 'owner' and m.id != user.id %}
+    <form method="post" action="/team/role" class="row" style="gap:6px">
+      <input type="hidden" name="user_id" value="{{ m.id }}">
+      <select name="role" style="width:auto">
+        {% for r in roles %}<option value="{{ r }}" {% if m.role==r %}selected{% endif %}>{{ r }}</option>{% endfor %}
+      </select>
+      <button class="btn sm ghost">Set</button>
+    </form>
+    {% else %}<span class="pill">{{ m.role }}</span>{% endif %}
+  </td>
+  {% if is_admin %}
+  <td style="text-align:right">
+    {% if m.role != 'owner' and m.id != user.id %}
+    <form method="post" action="/team/remove">
+      <input type="hidden" name="user_id" value="{{ m.id }}">
+      <button class="btn sm ghost">Remove</button>
+    </form>
+    {% endif %}
+  </td>
+  {% endif %}
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+
+{% if is_admin %}
+<h2>Invite a teammate</h2>
+<div class="panel" style="max-width:640px;margin-bottom:20px">
+<form method="post" action="/team/invite" class="row">
+  <div style="flex:2;min-width:180px">
+    <label style="margin-top:0">Email</label>
+    <input name="email" type="email" required placeholder="teammate@agency.com">
+  </div>
+  <div style="flex:1;min-width:120px">
+    <label style="margin-top:0">Role</label>
+    <select name="role">
+      {% for r in roles %}<option value="{{ r }}" {% if r=='member' %}selected{% endif %}>{{ r }}</option>{% endfor %}
+    </select>
+  </div>
+  <button class="btn" style="align-self:flex-end">Create invite link</button>
+</form>
+<p class="muted" style="font-size:13px;margin-bottom:0">Roles: <b>admin</b> manages team &amp; settings · <b>member</b> runs research &amp; exports · <b>reviewer</b> only reviews and approves outreach.</p>
+</div>
+
+{% if invites %}
+<h2>Pending invites</h2>
+<div class="panel">
+<table>
+<thead><tr><th>Email</th><th>Role</th><th>Invite link (share it)</th><th></th></tr></thead>
+<tbody>
+{% for i in invites %}
+<tr>
+  <td>{{ i.email }}</td>
+  <td><span class="pill">{{ i.role }}</span></td>
+  <td class="mono" style="font-size:12px;word-break:break-all">{{ base_url }}/join/{{ i.token }}</td>
+  <td style="text-align:right">
+    <form method="post" action="/team/invite/{{ i.id }}/revoke">
+      <button class="btn sm ghost">Revoke</button>
+    </form>
+  </td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endif %}
+{% endif %}
+{% endblock %}

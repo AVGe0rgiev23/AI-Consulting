@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Opportunity Audit — Acme Logistics</title>
+<style>
+:root{--accent:#0a7d55;--ink:#1a1810;--muted:#6b665a;--line:#e6e2d8;--bg:#faf9f6;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:Georgia,'Times New Roman',serif;line-height:1.6}
+.page{max-width:820px;margin:0 auto;padding:48px 40px 80px}
+.mast{display:flex;justify-content:space-between;align-items:baseline;
+  border-bottom:3px solid var(--accent);padding-bottom:14px;margin-bottom:8px}
+.brandname{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-weight:800;
+  font-size:20px;letter-spacing:-.01em;color:var(--accent)}
+.kicker{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:11px;
+  text-transform:uppercase;letter-spacing:.14em;color:var(--muted)}
+h1{font-size:34px;letter-spacing:-.02em;margin:22px 0 4px;text-wrap:balance}
+.for{color:var(--muted);font-size:15px;margin:0 0 26px}
+.lead{font-size:18px;background:var(--card);border:1px solid var(--line);
+  border-left:4px solid var(--accent);border-radius:8px;padding:18px 22px;margin:0 0 30px}
+h2.sec{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:13px;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--muted);
+  border-bottom:1px solid var(--line);padding-bottom:6px;margin:34px 0 18px}
+.opp{background:var(--card);border:1px solid var(--line);border-radius:10px;
+  padding:20px 22px;margin-bottom:16px;page-break-inside:avoid}
+.opp .num{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-weight:800;
+  color:var(--accent);font-size:13px;letter-spacing:.08em}
+.opp h3{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:20px;
+  margin:4px 0 10px;letter-spacing:-.01em}
+.opp .impact{margin:0 0 12px}
+.opp .rec{font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:15px;
+  background:var(--bg);border-radius:8px;padding:12px 14px;margin:0 0 12px}
+.opp .rec b{color:var(--accent)}
+.evidence{list-style:none;margin:8px 0 0;padding:0}
+.evidence li{font-size:13px;color:var(--muted);padding:4px 0;border-top:1px solid var(--line)}
+.evidence a{color:var(--accent);word-break:break-all;font-size:12px}
+.foot{margin-top:44px;border-top:1px solid var(--line);padding-top:16px;
+  font-family:-apple-system,Segoe UI,Roboto,sans-serif;font-size:12px;color:var(--muted);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.actionbar{position:sticky;top:0;background:var(--bg);padding:10px 0;text-align:right}
+.printbtn{font-family:-apple-system,Segoe UI,Roboto,sans-serif;background:var(--accent);
+  color:#fff;border:none;border-radius:8px;padding:9px 16px;font-weight:600;cursor:pointer}
+@media print{.actionbar{display:none}body{background:#fff}.page{padding:0}
+  .opp,.lead{border-color:#ccc}}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="actionbar"><button class="printbtn" onclick="window.print()">Print / Save as PDF</button></div>
+  <div class="mast">
+    <span class="brandname">Northstar Growth</span>
+    <span class="kicker">AI Opportunity Audit</span>
+  </div>
+  <h1>Acme Logistics</h1>
+  <p class="for">Prepared for Acme Logistics · acme-logistics.com</p>
+
+  <div class="lead">Based on public information about Acme Logistics, we identified 4 concrete opportunities to improve operations and revenue. The most significant is: recover revenue lost to slow response.</div>
+
+  <h2 class="sec">Opportunities</h2>
+  
+  <div class="opp">
+    <span class="num">OPPORTUNITY 1 · REVENUE LEAK</span>
+    <h3>Recover revenue lost to slow response</h3>
+    <p class="impact">Even a modest speed-up in quoting or follow-up tends to recover several deals a month.</p>
+    <div class="rec"><b>Recommended:</b> Automate inbound intake so no request or quote sits idle.</div>
+    
+    <ul class="evidence">
+      
+      <li>Acme Logistics uses quote-based pricing with no self-serve checkout.<br><a href="https://acme-logistics.com/pricing">https://acme-logistics.com/pricing</a></li>
+      
+    </ul>
+    
+  </div>
+  
+  <div class="opp">
+    <span class="num">OPPORTUNITY 2 · SCALING</span>
+    <h3>Scale operations without adding headcount</h3>
+    <p class="impact">Manual coordination quietly caps throughput as volume grows.</p>
+    <div class="rec"><b>Recommended:</b> Introduce workflow automation for the highest-volume manual steps.</div>
+    
+    <ul class="evidence">
+      
+      <li>Acme Logistics is expanding its operations team<br><a href="https://news.example/acme-logistics-hiring">https://news.example/acme-logistics-hiring</a></li>
+      
+    </ul>
+    
+  </div>
+  
+  <div class="opp">
+    <span class="num">OPPORTUNITY 3 · INEFFICIENCY</span>
+    <h3>Remove manual process bottlenecks</h3>
+    <p class="impact">Repetitive manual work is slow, costly, and error-prone.</p>
+    <div class="rec"><b>Recommended:</b> Automate the repetitive handoffs surfaced in the findings.</div>
+    
+    <ul class="evidence">
+      
+      <li>Acme Logistics has written about manual invoicing and quoting bottlenecks.<br><a href="https://acme-logistics.com/blog">https://acme-logistics.com/blog</a></li>
+      
+    </ul>
+    
+  </div>
+  
+  <div class="opp">
+    <span class="num">OPPORTUNITY 4 · ACQUISITION</span>
+    <h3>Close lead-response gaps</h3>
+    <p class="impact">Slow first-touch follow-up loses buyers who were ready to talk.</p>
+    <div class="rec"><b>Recommended:</b> Automate first-touch follow-up so every inbound gets a reply in minutes.</div>
+    
+    <ul class="evidence">
+      
+      <li>Acme Logistics reviews<br><a href="https://reviews.example/acme-logistics">https://reviews.example/acme-logistics</a></li>
+      
+    </ul>
+    
+  </div>
+  
+
+  <div class="foot">
+    <span>Northstar Growth</span>
+    <span>hello@northstar.io · northstar.io</span>
+  </div>
+</div>
+</body>
+</html>

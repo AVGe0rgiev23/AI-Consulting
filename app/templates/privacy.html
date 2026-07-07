@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}Privacy — LeadGenius{% endblock %}
+{% block layout %}
+<main class="main" style="max-width:780px;margin:0 auto;padding:48px 24px">
+<p><a href="/">← LeadGenius</a></p>
+<h1>Privacy Policy</h1>
+<p class="sub">Plain-language version first: we process the business contact data you upload, on your behalf, to research companies and draft outreach. We don't sell it, we don't share it, and we delete it when you do.</p>
+
+<h2>What we collect</h2>
+<ul>
+  <li><b>Account data:</b> your name, email, and workspace settings.</li>
+  <li><b>Uploaded lead lists:</b> business contact data you provide — company names, business domains, work emails, job titles, LinkedIn URLs. You are the controller of this data; LeadGenius processes it on your instructions.</li>
+  <li><b>Research output:</b> findings extracted from the prospect's public website and public web search results, each linked to its source URL.</li>
+  <li><b>Usage data:</b> activity logs (imports, research runs, exports) scoped to your workspace.</li>
+</ul>
+
+<h2>What we do with it</h2>
+<ul>
+  <li>Research the companies on your list using their public websites (crawled respecting robots.txt) and public web search.</li>
+  <li>Generate outreach drafts using a large-language-model provider. Only the research findings and your offer description are sent to the model — never your account credentials or payment data.</li>
+  <li>We never sell, rent, or share your lists with other customers or third parties beyond the subprocessors below.</li>
+</ul>
+
+<h2>Subprocessors</h2>
+<ul>
+  <li>An LLM API provider (draft generation and finding extraction).</li>
+  <li>A web-search API provider (public news, hiring, and review lookups).</li>
+  <li>Stripe (payments), if billing is enabled.</li>
+</ul>
+
+<h2>Retention &amp; deletion</h2>
+<ul>
+  <li>Website crawl caches expire after 7 days; search caches after 3 days.</li>
+  <li>Lead lists, research, and drafts persist in your workspace until you delete the list or your account — deleting removes the associated research and drafts.</li>
+  <li>You can request full account deletion at any time via the contact below.</li>
+</ul>
+
+<h2>GDPR</h2>
+<ul>
+  <li>For uploaded lists, you are the data controller and LeadGenius is a processor acting on your documented instructions.</li>
+  <li>Research covers publicly available business information, processed under legitimate interest (B2B prospecting). We only touch professional data: company facts, work emails, job titles.</li>
+  <li>Data subjects may request access, correction, or erasure of their data — forward any such request and we will act on it promptly, including purging cached research for their domain.</li>
+  <li>It is your responsibility to ensure you have a lawful basis to contact the people on your lists in their jurisdiction (GDPR, ePrivacy, CAN-SPAM and equivalents).</li>
+</ul>
+
+<h2>Contact</h2>
+<p>Privacy questions and deletion requests: <a href="mailto:privacy@leadgenius.example">privacy@leadgenius.example</a></p>
+<p class="muted">See also: <a href="/how-research-works">how our research works</a> · <a href="/terms">terms of service</a></p>
+</main>
+{% endblock %}

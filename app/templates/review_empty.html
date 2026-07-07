@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% set nav = 'lists' %}
+{% block title %}Review — {{ list.name }}{% endblock %}
+{% block main %}
+<div class="topbar"><div><h1>Review queue</h1><p class="sub">{{ list.name }}</p></div></div>
+<div class="panel">
+  <p>Nothing to review yet. Run research on this list first.</p>
+  <a class="btn" href="/lists/{{ list.id }}">Back to list</a>
+</div>
+{% endblock %}

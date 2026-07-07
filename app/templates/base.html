@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}LeadGenius{% endblock %}</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c99a4b'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='17' font-weight='600' fill='%23171006' text-anchor='middle'%3ELG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/app.css?v=2">
+<script src="https://unpkg.com/htmx.org@1.9.12"></script>
+<script src="/static/app.js?v=2" defer></script>
+<script>
+(function(){var t=localStorage.getItem('lg-theme');if(t)document.documentElement.setAttribute('data-theme',t);})();
+function toggleTheme(){var r=document.documentElement;var cur=r.getAttribute('data-theme')||'dark';
+var next=cur==='dark'?'light':'dark';r.setAttribute('data-theme',next);localStorage.setItem('lg-theme',next);}
+</script>
+</head>
+<body>
+<div class="grain"></div>
+{% block layout %}
+<div class="layout">
+  <nav class="side">
+    <div class="brand">
+      <div class="brandmark">L<span class="pulse"></span></div>
+      <div class="word"><b>LeadGenius</b><span>Research &amp; Outreach</span></div>
+    </div>
+
+    <div class="navgroup">Workspace</div>
+    <a class="nav {% if nav=='home' %}active{% endif %}" href="/">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1.2"/><rect x="11" y="3" width="6" height="6" rx="1.2"/><rect x="3" y="11" width="6" height="6" rx="1.2"/><rect x="11" y="11" width="6" height="6" rx="1.2"/></svg>
+      Overview
+    </a>
+    <a class="nav {% if nav=='lists' %}active{% endif %}" href="/lists">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="5" x2="17" y2="5"/><line x1="3" y1="10" x2="17" y2="10"/><line x1="3" y1="15" x2="12" y2="15"/></svg>
+      Lead Lists
+    </a>
+    <a class="nav {% if nav=='exports' %}active{% endif %}" href="/exports">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3v9M6.5 8.5 10 12l3.5-3.5"/><rect x="4" y="14.6" width="12" height="2.2" rx="1"/></svg>
+      Exports
+    </a>
+    <a class="nav {% if nav=='analytics' %}active{% endif %}" href="/analytics">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="16" x2="4" y2="10"/><line x1="10" y1="16" x2="10" y2="5.5"/><line x1="16" y1="16" x2="16" y2="12"/></svg>
+      Analytics
+    </a>
+    <a class="nav {% if nav=='audit' %}active{% endif %}" href="/audit">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h6l3 3v11H6z"/><path d="M8 10.5l1.6 1.6L13 8.5"/></svg>
+      Audit Reports
+    </a>
+
+    <div class="navgroup">Configure</div>
+    <a class="nav {% if nav=='onboarding' %}active{% endif %}" href="/onboarding">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6.5"/><circle cx="10" cy="10" r="2.3"/><line x1="10" y1="1.3" x2="10" y2="3.3"/><line x1="10" y1="16.7" x2="10" y2="18.7"/></svg>
+      Offer Profile
+    </a>
+    <a class="nav {% if nav=='prompts' %}active{% endif %}" href="/prompts">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6l-3.2 4 3.2 4"/><path d="M13.5 6l3.2 4-3.2 4"/><line x1="11.5" y1="4.3" x2="8.5" y2="15.7"/></svg>
+      Prompt Library
+    </a>
+    <a class="nav {% if nav=='team' %}active{% endif %}" href="/team">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.3" cy="7.3" r="3"/><path d="M2.3 17c0-3 2.2-5.2 5-5.2s5 2.2 5 5.2"/><circle cx="14.3" cy="8.3" r="2.3"/><path d="M12.6 12c2.3.4 4 2.1 4 5"/></svg>
+      Team
+    </a>
+    <a class="nav {% if nav=='billing' %}active{% endif %}" href="/billing">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5" width="15" height="10" rx="1.6"/><line x1="2.5" y1="8.3" x2="17.5" y2="8.3"/><line x1="5" y1="12" x2="9" y2="12"/></svg>
+      Billing
+    </a>
+    <a class="nav {% if nav=='settings' %}active{% endif %}" href="/settings">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="2.6"/><path d="M10 3v2.2M10 14.8V17M3 10h2.2M14.8 10H17M5.3 5.3l1.5 1.5M13.2 13.2l1.5 1.5M14.7 5.3l-1.5 1.5M6.8 13.2l-1.5 1.5"/></svg>
+      Settings
+    </a>
+
+    <div class="spacer"></div>
+    <div style="font-size:11px;padding:0 6px 8px;opacity:.7">
+      <a href="/how-research-works">How research works</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a>
+    </div>
+    <button class="themetoggle" id="cmdk-trigger" type="button" style="margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px">Quick nav <span class="kbd">Ctrl K</span></button>
+    <button class="themetoggle" onclick="toggleTheme()">Toggle theme</button>
+    <div class="foot">
+      <div class="avatar">{{ (user.name or user.email)[0]|upper if user else '?' }}</div>
+      <div class="meta"><b>{{ user.name or user.email if user }}</b><a href="/logout">Log out</a></div>
+    </div>
+  </nav>
+  <main class="main">{% block main %}{% endblock %}</main>
+</div>
+{% endblock %}
+</body>
+</html>

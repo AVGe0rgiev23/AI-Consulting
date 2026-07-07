@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Join {{ ws.name }} — LeadGenius{% endblock %}
+{% block layout %}
+<div class="authshell">
+  <div class="art">
+    <div class="scanline"></div>
+    <div class="amark">L</div>
+    <h1>You're invited to<br>{{ ws.name }}.</h1>
+    <p class="tag">Set a password to join the workspace and start reviewing
+      research-backed outreach with the team.</p>
+    <div class="props">
+      <div><b></b> Invited as <span class="mono">{{ invite.role }}</span></div>
+      <div><b></b> {{ invite.email }}</div>
+    </div>
+  </div>
+  <div class="formside">
+    <div class="formcard">
+      <h1>Join {{ ws.name }}</h1>
+      <p class="lede">You've been invited as <b>{{ invite.role }}</b> ({{ invite.email }}).</p>
+      {% if error %}<div class="err">{{ error }}</div>{% endif %}
+      {% if existing %}
+      <p>You already have an account. <a href="/login">Log in</a>, then open this invite link again to accept.</p>
+      {% else %}
+      <form method="post" action="/join/{{ invite.token }}">
+        <label>Your name</label><input name="name" type="text">
+        <label>Choose a password</label><input name="password" type="password" required minlength="8">
+        <button class="btn" style="margin-top:18px;width:100%;justify-content:center">Join workspace</button>
+      </form>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}

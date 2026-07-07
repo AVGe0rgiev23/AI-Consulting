@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% set nav = 'lists' %}
+{% block title %}Lead Lists — LeadGenius{% endblock %}
+{% block main %}
+<div class="topbar"><div><h1>Lead Lists</h1><p class="sub">Upload a CSV from Apollo, Clay, or any export.</p></div></div>
+
+<div class="panel" style="max-width:640px;margin-bottom:22px">
+<form method="post" action="/lists" enctype="multipart/form-data">
+  <label>List name</label>
+  <input name="name" required placeholder="SaaS founders — July">
+  <label>CSV or Excel file (Apollo &amp; Clay exports auto-map, columns: company, domain, email, name, title, linkedin)</label>
+  <input name="file" type="file" accept=".csv,.xlsx,.xlsm">
+  <label>Or paste a Google Sheets link (shared as "Anyone with the link — Viewer")</label>
+  <input name="sheet_url" placeholder="https://docs.google.com/spreadsheets/d/…">
+  <button class="btn" style="margin-top:16px">Create list</button>
+</form>
+<p class="muted" style="font-size:13px;margin-bottom:0">A pasted sheet link wins over an attached file. Dedupe and validation are identical for every source.</p>
+</div>
+
+<div class="panel">
+{% if lists %}
+<table>
+<thead><tr><th>Name</th><th>Source</th><th>Leads</th><th>Errors</th><th>Status</th><th></th></tr></thead>
+<tbody>
+{% for l in lists %}
+<tr>
+  <td><a href="/lists/{{ l.id }}">{{ l.name }}</a></td>
+  <td class="muted">{{ l.source }}</td>
+  <td class="mono">{{ l.row_count }}</td>
+  <td class="mono">{{ l.error_count }}</td>
+  <td><span class="pill {{ l.status }}">{{ l.status }}</span></td>
+  <td style="text-align:right"><a class="btn sm ghost" href="/lists/{{ l.id }}">Open</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}<div class="empty"><span class="glyph">§</span>No lists yet — your first upload lands here.</div>{% endif %}
+</div>
+{% endblock %}
