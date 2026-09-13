@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 530" width="1200" height="530" role="img" aria-labelledby="sdTitle sdDesc">
+  <title id="sdTitle">The LeadGenius Slop Detector</title>
+  <desc id="sdDesc">On the left, a typical AI email whose cliché phrases get struck out and marked banned, scoring 27 out of 100. On the right, the LeadGenius email for the same prospect, written from real research with sources, scoring 93 out of 100.</desc>
+  <defs>
+    <radialGradient id="sdGlowL" cx="20%" cy="100%" r="60%">
+      <stop offset="0" stop-color="#3b1710" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#0c0a07" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sdGlowR" cx="85%" cy="100%" r="60%">
+      <stop offset="0" stop-color="#123320" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#0c0a07" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="sdFrame"><rect width="1200" height="530" rx="24"/></clipPath>
+    <clipPath id="sdRight"><rect x="624" y="140" width="520" height="350" rx="18"/></clipPath>
+  </defs>
+  <style>
+    .serif{font-family:Georgia,'Times New Roman',serif}
+    .sans{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+    .strike{transform-box:fill-box;transform-origin:left center;transform:scaleX(0)}
+    .s1{animation:s1 14s infinite}.s2{animation:s2 14s infinite}.s3{animation:s3 14s infinite}.s4{animation:s4 14s infinite}.s5{animation:s5 14s infinite}
+    @keyframes s1{0%,5.7%{transform:scaleX(0);opacity:1}8.9%,94%{transform:scaleX(1);opacity:1}98%{opacity:0;transform:scaleX(1)}100%{opacity:0;transform:scaleX(0)}}
+    @keyframes s2{0%,12.9%{transform:scaleX(0);opacity:1}16.1%,94%{transform:scaleX(1);opacity:1}98%{opacity:0;transform:scaleX(1)}100%{opacity:0;transform:scaleX(0)}}
+    @keyframes s3{0%,20%{transform:scaleX(0);opacity:1}23.2%,94%{transform:scaleX(1);opacity:1}98%{opacity:0;transform:scaleX(1)}100%{opacity:0;transform:scaleX(0)}}
+    @keyframes s4{0%,27.1%{transform:scaleX(0);opacity:1}30.4%,94%{transform:scaleX(1);opacity:1}98%{opacity:0;transform:scaleX(1)}100%{opacity:0;transform:scaleX(0)}}
+    @keyframes s5{0%,34.3%{transform:scaleX(0);opacity:1}37.5%,94%{transform:scaleX(1);opacity:1}98%{opacity:0;transform:scaleX(1)}100%{opacity:0;transform:scaleX(0)}}
+    .d1{animation:d1 14s infinite}.d2{animation:d2 14s infinite}.d3{animation:d3 14s infinite}.d4{animation:d4 14s infinite}.d5{animation:d5 14s infinite}
+    @keyframes d1{0%,7%{opacity:1}9%,94%{opacity:.38}98%,100%{opacity:1}}
+    @keyframes d2{0%,14.2%{opacity:1}16.2%,94%{opacity:.38}98%,100%{opacity:1}}
+    @keyframes d3{0%,21.3%{opacity:1}23.3%,94%{opacity:.38}98%,100%{opacity:1}}
+    @keyframes d4{0%,28.4%{opacity:1}30.4%,94%{opacity:.38}98%,100%{opacity:1}}
+    @keyframes d5{0%,35.6%{opacity:1}37.6%,94%{opacity:.38}98%,100%{opacity:1}}
+    .stamp{opacity:0}
+    .p1{animation:p1 14s infinite}.p2{animation:p2 14s infinite}.p3{animation:p3 14s infinite}.p4{animation:p4 14s infinite}.p5{animation:p5 14s infinite}
+    @keyframes p1{0%,8.6%{opacity:0;transform:translateX(10px)}10%,94%{opacity:1;transform:translateX(0)}98%,100%{opacity:0}}
+    @keyframes p2{0%,15.8%{opacity:0;transform:translateX(10px)}17.2%,94%{opacity:1;transform:translateX(0)}98%,100%{opacity:0}}
+    @keyframes p3{0%,22.9%{opacity:0;transform:translateX(10px)}24.3%,94%{opacity:1;transform:translateX(0)}98%,100%{opacity:0}}
+    @keyframes p4{0%,30%{opacity:0;transform:translateX(10px)}31.4%,94%{opacity:1;transform:translateX(0)}98%,100%{opacity:0}}
+    @keyframes p5{0%,37.2%{opacity:0;transform:translateX(10px)}38.6%,94%{opacity:1;transform:translateX(0)}98%,100%{opacity:0}}
+    .body{animation:body 14s infinite}
+    @keyframes body{0%,94%{opacity:1}98%,100%{opacity:0}}
+    .w1{animation:w1 14s infinite}.w2{animation:w2 14s infinite}.w3{animation:w3 14s infinite}
+    .w4{animation:w4 14s infinite}.w5{animation:w5 14s infinite}.w6{animation:w6 14s infinite}
+    @keyframes w1{0%,41.4%{transform:translateX(0)}45%,99%{transform:translateX(520px)}100%{transform:translateX(0)}}
+    @keyframes w2{0%,45.7%{transform:translateX(0)}49.3%,99%{transform:translateX(520px)}100%{transform:translateX(0)}}
+    @keyframes w3{0%,51.4%{transform:translateX(0)}55%,99%{transform:translateX(520px)}100%{transform:translateX(0)}}
+    @keyframes w4{0%,55.7%{transform:translateX(0)}59.3%,99%{transform:translateX(520px)}100%{transform:translateX(0)}}
+    @keyframes w5{0%,60%{transform:translateX(0)}63.6%,99%{transform:translateX(520px)}100%{transform:translateX(0)}}
+    @keyframes w6{0%,65.7%{transform:translateX(0)}69.3%,99%{transform:translateX(520px)}100%{transform:translateX(0)}}
+    .c1,.c2,.c3,.c4,.c5,.c6{opacity:0}
+    .c1{animation:c1 14s infinite}.c2{animation:c2 14s infinite}.c3{animation:c3 14s infinite}
+    .c4{animation:c4 14s infinite}.c5{animation:c5 14s infinite}.c6{animation:c6 14s infinite}
+    @keyframes c1{0%,41%{opacity:0}41.4%,100%{opacity:1}}
+    @keyframes c2{0%,45.3%{opacity:0}45.7%,100%{opacity:1}}
+    @keyframes c3{0%,51%{opacity:0}51.4%,100%{opacity:1}}
+    @keyframes c4{0%,55.3%{opacity:0}55.7%,100%{opacity:1}}
+    @keyframes c5{0%,59.6%{opacity:0}60%,100%{opacity:1}}
+    @keyframes c6{0%,65.3%{opacity:0}65.7%,100%{opacity:1}}
+    .gauge{stroke-dasharray:163.4;stroke-dashoffset:163.4;animation:gauge 14s infinite}
+    @keyframes gauge{0%,70%{stroke-dashoffset:163.4}78.6%,99%{stroke-dashoffset:11.4}100%{stroke-dashoffset:163.4}}
+    .score{opacity:0;animation:score 14s infinite}
+    @keyframes score{0%,77%{opacity:0}80%,97%{opacity:1}100%{opacity:0}}
+    .chips{opacity:0;animation:chips 14s infinite}
+    @keyframes chips{0%,80%{opacity:0;transform:translateY(8px)}84%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @media (prefers-reduced-motion: reduce){
+      .s1,.s2,.s3,.s4,.s5,.d1,.d2,.d3,.d4,.d5,.p1,.p2,.p3,.p4,.p5,.body,.w1,.w2,.w3,.w4,.w5,.w6,.c1,.c2,.c3,.c4,.c5,.c6,.gauge,.score,.chips{animation:none}
+      .strike{transform:scaleX(1)}.d1,.d2,.d3,.d4,.d5{opacity:.38}.stamp,.score,.chips{opacity:1}
+      .w1,.w2,.w3,.w4,.w5,.w6{transform:translateX(520px)}.gauge{stroke-dashoffset:11.4}
+    }
+  </style>
+
+  <g clip-path="url(#sdFrame)">
+    <rect width="1200" height="530" fill="#0c0a07"/>
+    <rect width="1200" height="530" fill="url(#sdGlowL)"/>
+    <rect width="1200" height="530" fill="url(#sdGlowR)"/>
+    <rect x=".5" y=".5" width="1199" height="529" rx="24" fill="none" stroke="#3a2d18" stroke-opacity=".7"/>
+
+    <text x="56" y="62" class="mono" font-size="12.5" letter-spacing="3" fill="#d9a653">THE SLOP DETECTOR</text>
+    <text x="56" y="106" class="serif" font-size="33" fill="#f5ecdc">Same prospect. Two emails. Guess which one gets a reply.</text>
+
+    <rect x="56" y="140" width="520" height="350" rx="18" fill="#15110b" stroke="#5a2e24"/>
+    <text x="84" y="178" class="mono" font-size="11.5" letter-spacing="2" fill="#f08e78">TYPICAL AI EMAIL</text>
+    <text x="84" y="200" class="sans" font-size="13" fill="#8a7d6b">Hi {{first_name}},</text>
+    <g transform="translate(530 186) rotate(-90)">
+      <circle r="26" fill="none" stroke="#2a2318" stroke-width="5.5"/>
+      <circle r="26" fill="none" stroke="#ff6b57" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="119.3"/>
+    </g>
+    <text x="530" y="193" text-anchor="middle" class="serif" font-size="19" font-weight="700" fill="#ffb3a5">27</text>
+
+    <g class="serif" font-size="18" font-style="italic" fill="#efe4d0">
+      <rect x="80" y="224" width="472" height="44" rx="10" fill="#1d1710" stroke="#2e2517"/>
+      <text x="98" y="252" class="d1">"Hope this email finds you well!"</text>
+      <rect x="92" y="245" width="330" height="2.5" rx="1" fill="#ff6b57" class="strike s1"/>
+      <g class="stamp p1"><rect x="440" y="234" width="98" height="24" rx="12" fill="#3a1812" stroke="#ff6b57"/><text x="489" y="250.5" text-anchor="middle" class="mono" font-style="normal" font-size="11" font-weight="700" fill="#ff9c8a">✕ BANNED</text></g>
+
+      <rect x="80" y="276" width="472" height="44" rx="10" fill="#1d1710" stroke="#2e2517"/>
+      <text x="98" y="304" class="d2">"I came across your amazing website"</text>
+      <rect x="92" y="297" width="330" height="2.5" rx="1" fill="#ff6b57" class="strike s2"/>
+      <g class="stamp p2"><rect x="440" y="286" width="98" height="24" rx="12" fill="#3a1812" stroke="#ff6b57"/><text x="489" y="302.5" text-anchor="middle" class="mono" font-style="normal" font-size="11" font-weight="700" fill="#ff9c8a">✕ BANNED</text></g>
+
+      <rect x="80" y="328" width="472" height="44" rx="10" fill="#1d1710" stroke="#2e2517"/>
+      <text x="98" y="356" class="d3">"I wanted to reach out because..."</text>
+      <rect x="92" y="349" width="330" height="2.5" rx="1" fill="#ff6b57" class="strike s3"/>
+      <g class="stamp p3"><rect x="440" y="338" width="98" height="24" rx="12" fill="#3a1812" stroke="#ff6b57"/><text x="489" y="354.5" text-anchor="middle" class="mono" font-style="normal" font-size="11" font-weight="700" fill="#ff9c8a">✕ BANNED</text></g>
+
+      <rect x="80" y="380" width="472" height="44" rx="10" fill="#1d1710" stroke="#2e2517"/>
+      <text x="98" y="408" class="d4">"We'll revolutionize your workflow"</text>
+      <rect x="92" y="401" width="330" height="2.5" rx="1" fill="#ff6b57" class="strike s4"/>
+      <g class="stamp p4"><rect x="440" y="390" width="98" height="24" rx="12" fill="#3a1812" stroke="#ff6b57"/><text x="489" y="406.5" text-anchor="middle" class="mono" font-style="normal" font-size="11" font-weight="700" fill="#ff9c8a">✕ BANNED</text></g>
+
+      <rect x="80" y="432" width="472" height="44" rx="10" fill="#1d1710" stroke="#2e2517"/>
+      <text x="98" y="460" class="d5">"Game-changer! Let's touch base."</text>
+      <rect x="92" y="453" width="330" height="2.5" rx="1" fill="#ff6b57" class="strike s5"/>
+      <g class="stamp p5"><rect x="440" y="442" width="98" height="24" rx="12" fill="#3a1812" stroke="#ff6b57"/><text x="489" y="458.5" text-anchor="middle" class="mono" font-style="normal" font-size="11" font-weight="700" fill="#ff9c8a">✕ BANNED</text></g>
+    </g>
+
+    <rect x="624" y="140" width="520" height="350" rx="18" fill="#15110b" stroke="#2f6a45"/>
+    <text x="652" y="178" class="mono" font-size="11.5" letter-spacing="2" fill="#8fdcaa">LEADGENIUS EMAIL</text>
+    <text x="652" y="200" class="sans" font-size="13" fill="#8a7d6b">To: Wile Coyote, Head of Dispatch, Acme Logistics</text>
+    <g transform="translate(1098 186) rotate(-90)">
+      <circle r="26" fill="none" stroke="#2a2318" stroke-width="5.5"/>
+      <circle r="26" fill="none" stroke="#7fc79a" stroke-width="5.5" stroke-linecap="round" class="gauge"/>
+    </g>
+    <text x="1098" y="193" text-anchor="middle" class="serif score" font-size="19" font-weight="700" fill="#d9f5e2">93</text>
+
+    <g class="body" clip-path="url(#sdRight)">
+      <g class="serif" font-size="18" fill="#efe4d0">
+        <text x="652" y="248">I was going to call about your dispatch</text>
+        <text x="652" y="274">team, but figured I'd write first.</text>
+        <text x="652" y="314">You're hiring 3 dispatchers, and quotes</text>
+        <text x="652" y="340">still go through email. I'd guess slow</text>
+        <text x="652" y="366">quotes quietly cost a few deals a week.</text>
+        <text x="652" y="406">Mind if I send over a short example?</text>
+      </g>
+      <g fill="#15110b">
+        <g class="w1"><rect x="646" y="230" width="520" height="26"/><rect x="646" y="231" width="2" height="22" fill="#8fdcaa" class="c1"/></g>
+        <g class="w2"><rect x="646" y="256" width="520" height="26"/><rect x="646" y="257" width="2" height="22" fill="#8fdcaa" class="c2"/></g>
+        <g class="w3"><rect x="646" y="296" width="520" height="26"/><rect x="646" y="297" width="2" height="22" fill="#8fdcaa" class="c3"/></g>
+        <g class="w4"><rect x="646" y="322" width="520" height="26"/><rect x="646" y="323" width="2" height="22" fill="#8fdcaa" class="c4"/></g>
+        <g class="w5"><rect x="646" y="348" width="520" height="26"/><rect x="646" y="349" width="2" height="22" fill="#8fdcaa" class="c5"/></g>
+        <g class="w6"><rect x="646" y="388" width="520" height="26"/><rect x="646" y="389" width="2" height="22" fill="#8fdcaa" class="c6"/></g>
+      </g>
+      <g class="chips">
+        <rect x="652" y="436" width="140" height="28" rx="14" fill="#2a2113" stroke="#5b4624"/>
+        <text x="722" y="455" text-anchor="middle" class="mono" font-size="12" fill="#e2b866">source: /careers</text>
+        <rect x="802" y="436" width="140" height="28" rx="14" fill="#2a2113" stroke="#5b4624"/>
+        <text x="872" y="455" text-anchor="middle" class="mono" font-size="12" fill="#e2b866">source: /pricing</text>
+        <rect x="952" y="436" width="166" height="28" rx="14" fill="#15301f" stroke="#2f6a45"/>
+        <text x="1035" y="455" text-anchor="middle" class="sans" font-size="12.5" font-weight="600" fill="#8fdcaa">✓ 0 banned phrases</text>
+      </g>
+    </g>
+  </g>
+</svg>

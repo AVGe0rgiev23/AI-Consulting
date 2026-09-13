@@ -1,0 +1,113 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" role="img" aria-labelledby="rsTitle rsDesc">
+  <title id="rsTitle">LeadGenius live research stream</title>
+  <desc id="rsDesc">A live feed of LeadGenius researching a lead list: crawling each website, collecting findings, forming a hypothesis, and writing a scored email sequence.</desc>
+  <defs>
+    <radialGradient id="rsGlow" cx="10%" cy="0%" r="90%">
+      <stop offset="0" stop-color="#3f2c10" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#0c0a07" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rsBar" x1="0" x2="1">
+      <stop offset="0" stop-color="#c28c42"/>
+      <stop offset="1" stop-color="#f3d493"/>
+    </linearGradient>
+    <clipPath id="rsFrame"><rect width="1200" height="560" rx="24"/></clipPath>
+  </defs>
+  <style>
+    .serif{font-family:Georgia,'Times New Roman',serif}
+    .sans{font-family:'Segoe UI',-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}
+    .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace}
+    .pulse{animation:pulse 1.4s ease-in-out infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+    .row{opacity:0}
+    .r1{animation:r1 13s infinite}.r2{animation:r2 13s infinite}.r3{animation:r3 13s infinite}.r4{animation:r4 13s infinite}
+    .r5{animation:r5 13s infinite}.r6{animation:r6 13s infinite}.r7{animation:r7 13s infinite}.r8{animation:r8 13s infinite}
+    @keyframes r1{0%,4%{opacity:0;transform:translateY(10px)}7%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @keyframes r2{0%,13%{opacity:0;transform:translateY(10px)}16%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @keyframes r3{0%,22%{opacity:0;transform:translateY(10px)}25%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @keyframes r4{0%,31%{opacity:0;transform:translateY(10px)}34%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @keyframes r5{0%,42%{opacity:0;transform:translateY(10px)}45%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @keyframes r6{0%,51%{opacity:0;transform:translateY(10px)}54%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @keyframes r7{0%,60%{opacity:0;transform:translateY(10px)}63%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    @keyframes r8{0%,70%{opacity:0;transform:translateY(10px)}73%,94%{opacity:1;transform:translateY(0)}98%,100%{opacity:0}}
+    .bar{transform-box:fill-box;transform-origin:left center;animation:bar 13s infinite}
+    @keyframes bar{0%,3%{transform:scaleX(0)}34%{transform:scaleX(.17)}63%{transform:scaleX(.34)}73%,96%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+    .live{animation:live 13s infinite}
+    .done{opacity:0;animation:done 13s infinite}
+    @keyframes live{0%,71%{opacity:1}73%,100%{opacity:0}}
+    @keyframes done{0%,71%{opacity:0}73%,96%{opacity:1}100%{opacity:0}}
+    .skip{opacity:0;animation:skip 13s infinite}
+    @keyframes skip{0%,64%{opacity:0}67%,94%{opacity:.8}98%,100%{opacity:0}}
+    @media (prefers-reduced-motion: reduce){
+      .r1,.r2,.r3,.r4,.r5,.r6,.r7,.r8,.bar,.live,.done,.skip,.pulse{animation:none}
+      .row,.done{opacity:1}.skip{opacity:.8}.live{opacity:0}
+    }
+  </style>
+
+  <g clip-path="url(#rsFrame)">
+    <rect width="1200" height="560" fill="#0c0a07"/>
+    <rect width="1200" height="560" fill="url(#rsGlow)"/>
+    <rect x=".5" y=".5" width="1199" height="559" rx="24" fill="none" stroke="#3a2d18" stroke-opacity=".7"/>
+
+    <circle cx="62" cy="66" r="8" fill="none" stroke="#7fc79a" stroke-width="2"/>
+    <circle cx="62" cy="66" r="4" fill="#7fc79a" class="pulse"/>
+    <text x="84" y="77" class="serif" font-size="31" fill="#f5ecdc">Researching "Q3 Outreach · Fictional Legends"</text>
+    <text x="52" y="112" class="sans" font-size="15" fill="#9d917e">6 leads · every finding is saved with the page it came from</text>
+
+    <g class="live">
+      <rect x="1052" y="48" width="96" height="32" rx="16" fill="#2a1f10" stroke="#6b5127"/>
+      <circle cx="1074" cy="64" r="4.5" fill="#ff7a59" class="pulse"/>
+      <text x="1112" y="69.5" text-anchor="middle" class="mono" font-size="13" font-weight="600" fill="#f0c98a">LIVE</text>
+    </g>
+    <g class="done">
+      <rect x="1036" y="48" width="112" height="32" rx="16" fill="#15301f" stroke="#2f6a45"/>
+      <text x="1092" y="69.5" text-anchor="middle" class="mono" font-size="13" font-weight="600" fill="#8fdcaa">✓ DONE</text>
+    </g>
+
+    <rect x="52" y="140" width="1096" height="388" rx="18" fill="#15110b" stroke="#3a2e1d"/>
+    <rect x="76" y="164" width="1048" height="6" rx="3" fill="#2a2318"/>
+    <rect x="76" y="164" width="1048" height="6" rx="3" fill="url(#rsBar)" class="bar"/>
+
+    <g font-size="15.5">
+      <g class="row r1">
+        <text x="80" y="214" class="mono" font-size="12" letter-spacing="1.2" fill="#d9a653">CRAWLING</text>
+        <text x="232" y="214" class="sans" fill="#efe4d0">Researching Dunder Mifflin Paper: home, pricing, careers, news</text>
+        <line x1="76" y1="232" x2="1124" y2="232" stroke="#2a2318"/>
+      </g>
+      <g class="row r2">
+        <text x="80" y="258" class="mono" font-size="12" letter-spacing="1.2" fill="#d9a653">FINDINGS</text>
+        <text x="232" y="258" class="sans" fill="#efe4d0">Dunder Mifflin Paper: 6 findings (hiring, news, pricing, review) · high confidence</text>
+        <line x1="76" y1="276" x2="1124" y2="276" stroke="#2a2318"/>
+      </g>
+      <g class="row r3">
+        <text x="80" y="302" class="mono" font-size="12" letter-spacing="1.2" fill="#8fb4e8">HYPOTHESES</text>
+        <text x="232" y="302" class="sans" fill="#efe4d0">Top angle: quote-based pricing likely means slow quote turnaround</text>
+        <line x1="76" y1="320" x2="1124" y2="320" stroke="#2a2318"/>
+      </g>
+      <g class="row r4">
+        <text x="80" y="346" class="mono" font-size="12" letter-spacing="1.2" fill="#8fdcaa">OUTREACH</text>
+        <text x="232" y="346" class="sans" fill="#efe4d0">Dunder Mifflin Paper: wrote 5-step sequence, best score 93/100</text>
+        <line x1="76" y1="364" x2="1124" y2="364" stroke="#2a2318"/>
+      </g>
+      <g class="row r5">
+        <text x="80" y="390" class="mono" font-size="12" letter-spacing="1.2" fill="#d9a653">CRAWLING</text>
+        <text x="232" y="390" class="sans" fill="#efe4d0">Researching Initech Software: home, about, pricing, reviews</text>
+        <line x1="76" y1="408" x2="1124" y2="408" stroke="#2a2318"/>
+      </g>
+      <g class="row r6">
+        <text x="80" y="434" class="mono" font-size="12" letter-spacing="1.2" fill="#d9a653">FINDINGS</text>
+        <text x="232" y="434" class="sans" fill="#efe4d0">Initech Software: 5 findings (hiring, pricing, review) · high confidence</text>
+        <line x1="76" y1="452" x2="1124" y2="452" stroke="#2a2318"/>
+      </g>
+      <g class="row r7">
+        <text x="80" y="478" class="mono" font-size="12" letter-spacing="1.2" fill="#8fdcaa">OUTREACH</text>
+        <text x="232" y="478" class="sans" fill="#efe4d0">Initech Software: wrote 5-step sequence, best score 91/100</text>
+        <text x="1120" y="478" text-anchor="end" class="mono skip" font-size="12" fill="#9d917e">+ 4 more leads</text>
+      </g>
+      <g class="row r8">
+        <rect x="70" y="492" width="1060" height="28" rx="8" fill="#15301f"/>
+        <text x="80" y="511" class="mono" font-size="12" letter-spacing="1.2" fill="#8fdcaa">COMPLETE</text>
+        <text x="232" y="511" class="sans" font-weight="600" fill="#bdf0cc">Done · 6 leads processed · open the review queue</text>
+      </g>
+    </g>
+  </g>
+</svg>
